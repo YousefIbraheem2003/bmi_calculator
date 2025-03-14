@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class RulerWidget extends StatefulWidget {
   const RulerWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   @override
   State<RulerWidget> createState() => _MyHomePageState();
 }

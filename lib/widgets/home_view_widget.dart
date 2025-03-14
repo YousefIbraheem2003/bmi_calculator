@@ -1,7 +1,4 @@
-import 'package:bmi_calculator/categories/gender_categorie.dart';
-import 'package:bmi_calculator/widgets/age_widget.dart';
-import 'package:bmi_calculator/widgets/height_widget.dart';
-import 'package:bmi_calculator/widgets/weight_widget.dart';
+import 'package:bmi_calculator/widgets/information_widget.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -12,11 +9,11 @@ class HomeViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
-        buttonBackgroundColor: Colors.white,
-        backgroundColor: Colors.white,
+        buttonBackgroundColor: Colors.blue,
+        backgroundColor: Colors.blue,
         color: Colors.blue,
         items: [
-          Icon(
+          const Icon(
             Icons.monitor_heart,
             color: Colors.white,
             size: 30,
@@ -26,12 +23,12 @@ class HomeViewWidget extends StatelessWidget {
             child: Container(
               width: 60,
               height: 60,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.black,
                 shape: BoxShape.circle,
               ),
               alignment: Alignment.center,
-              child: Text(
+              child: const Text(
                 'BMI',
                 style: TextStyle(
                     color: Colors.white,
@@ -40,33 +37,13 @@ class HomeViewWidget extends StatelessWidget {
               ),
             ),
           ),
-          Icon(
+          const Icon(
             Icons.person,
             color: Colors.white,
             size: 30,
           ),
         ],
       ),
-      // bottomNavigationBar: NavigationBar(
-      //   backgroundColor: const Color(0xFF2566CF),
-      //   height: 80,
-      //   elevation: 0,
-      //   selectedIndex: 0,
-      //   destinations: const [
-      //     NavigationDestination(
-      //         icon: Icon(
-      //           Icons.monitor_heart,
-      //           color: Colors.white,
-      //         ),
-      //         label: 'activity'),
-      //     NavigationDestination(
-      //         icon: Icon(
-      //           Icons.person,
-      //           color: Colors.white,
-      //         ),
-      //         label: 'profile')
-      //   ],
-      // ),
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const Text(
@@ -75,30 +52,7 @@ class HomeViewWidget extends StatelessWidget {
         ),
       ),
       backgroundColor: Colors.white,
-      body: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: Column(
-          children: [
-            GenderCategorie(),
-            SizedBox(
-              height: 30,
-            ),
-            Row(children: [HeightWidget()]),
-            SizedBox(
-              height: 30,
-            ),
-            Row(
-              children: [
-                WeightWidget(),
-                SizedBox(
-                  width: 20,
-                ),
-                AgeWidget(),
-              ],
-            )
-          ],
-        ),
-      ),
+      body: const InformationWidget(),
     );
   }
 }

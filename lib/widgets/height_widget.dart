@@ -16,7 +16,7 @@ class HeightWidget extends StatelessWidget {
             width: 1,
           ),
         ),
-        child: Column(
+        child: const Column(
           children: [
             Padding(
               padding: EdgeInsets.only(top: 15),
