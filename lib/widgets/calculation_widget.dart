@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 class CalculationWidget extends StatelessWidget {
   const CalculationWidget(
-      {super.key, required this.height, required this.weight});
-  final double weight;
-  final double height;
-
+      {super.key, required this.result, required this.text});
+  final double result;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -23,25 +22,15 @@ class CalculationWidget extends StatelessWidget {
             ),
             // weight/height
             Text(
-              "${weight / (height * height)}",
+              result.toString(),
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 30,
               ),
             ),
-            const Text(
-              '(Normal)',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 15,
-              ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            const Text(
-              'text kbera awy awy awy awy 1',
-              style: TextStyle(
+            Text(
+              text,
+              style: const TextStyle(
                 color: Colors.white,
               ),
             ),

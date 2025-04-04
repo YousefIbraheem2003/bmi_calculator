@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bmi_calculator/widgets/calculation_widget.dart';
 import 'package:bmi_calculator/widgets/information_widget.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -15,6 +17,33 @@ class _HomeViewWidgetState extends State<HomeViewWidget> {
   double weight = 0;
   double height = 0;
   double result = 0;
+  String text = '';
+  double bmiCalculation({
+    required double weight,
+    required double height,
+  }) {
+    result = weight / pow((height / 100), 2);
+    return result;
+  }
+
+  String bmiText(double result) {
+    String text = '';
+    if (result < 18.5) {
+      text = 'Underweight';
+    } else if (result > 18.5 && result < 24.9) {
+      text = 'Normal weight';
+    } else if (result > 25 && result < 29.9) {
+      text = 'Overweight';
+    } else if (result > 30 && result < 34.9) {
+      text = 'Obesity Class I';
+    } else if (result > 35 && result < 39.9) {
+      text = 'Obesity Class II';
+    } else {
+      text = 'Obesity Class III';
+    }
+    return text;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,40 +113,14 @@ class _HomeViewWidgetState extends State<HomeViewWidget> {
             },
           ),
           CalculationWidget(
-            weight: weight,
-            height: height,
+            result: bmiCalculation(
+              weight: weight,
+              height: height,
+            ),
+            text: bmiText(result),
           ),
         ],
       ),
     );
   }
-
-  // Widget getSelctedWidget({
-  //   required int index,
-  //   required double newheight,
-  //   required double newWeight,
-  // }) {
-  //   Widget widget = InformationWidget(
-  //     weightChanged: (value) {
-  //       newWeight = value.toDouble();
-  //       setState(() {});
-  //     },
-  //     heightChanged: (value) {
-  //       newheight = value.toDouble();
-  //       setState(() {});
-  //     },
-  //   );
-  //   switch (index) {
-  //     case 1:
-  //       widget = CalculationWidget(
-  //         wieght: newWeight,
-  //         height: newheight,
-  //       );
-  //       break;
-  //     case 2:
-  //       widget = const Text('nothing here');
-  //       break;
-  //   }
-  //   return widget;
-  // }
 }
