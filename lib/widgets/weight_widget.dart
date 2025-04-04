@@ -1,14 +1,29 @@
 import 'package:flutter/material.dart';
 
 class WeightWidget extends StatefulWidget {
-  const WeightWidget({super.key});
-
+  const WeightWidget({
+    super.key,
+    required this.onChanged,
+  });
+  final Function(double weight) onChanged;
   @override
   State<WeightWidget> createState() => _WeightWidgetState();
 }
 
 class _WeightWidgetState extends State<WeightWidget> {
-  int number = 0;
+  double weight = 0;
+  void increment() {
+    weight++;
+    setState(() {});
+    widget.onChanged(weight);
+  }
+
+  void decrement() {
+    weight--;
+    setState(() {});
+    widget.onChanged(weight);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -41,15 +56,14 @@ class _WeightWidgetState extends State<WeightWidget> {
                     style: TextStyle(fontSize: 50, color: Colors.grey),
                   ),
                   onTap: () {
-                    number;
-                    setState(() {});
+                    decrement();
                   },
                 ),
                 const SizedBox(
                   width: 15,
                 ),
                 Text(
-                  number.toString(),
+                  weight.toString(),
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 30),
                 ),
@@ -62,8 +76,7 @@ class _WeightWidgetState extends State<WeightWidget> {
                     style: TextStyle(fontSize: 40, color: Colors.grey),
                   ),
                   onTap: () {
-                    number++;
-                    setState(() {});
+                    increment();
                   },
                 ),
               ],

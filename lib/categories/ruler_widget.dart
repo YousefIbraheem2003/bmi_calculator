@@ -2,18 +2,15 @@ import 'package:flutter_ruler_picker/flutter_ruler_picker.dart';
 import 'package:flutter/material.dart';
 
 class RulerWidget extends StatefulWidget {
-  const RulerWidget({
-    super.key,
-  });
+  const RulerWidget({super.key, required this.onChanged});
+  final Function(num height) onChanged;
   @override
   State<RulerWidget> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<RulerWidget> {
   RulerPickerController? _rulerPickerController;
-
   num currentValue = 0;
-
   List<RulerRange> ranges = const [
     RulerRange(begin: 0, end: 250, scale: 1),
   ];
@@ -45,9 +42,11 @@ class _MyHomePageState extends State<RulerWidget> {
             },
             ranges: ranges,
             onValueChanged: (value) {
-              setState(() {
-                currentValue = value;
-              });
+              currentValue = value;
+              setState(
+                () {},
+              );
+              widget.onChanged(currentValue);
             },
             width: MediaQuery.of(context).size.width,
             height: 50,

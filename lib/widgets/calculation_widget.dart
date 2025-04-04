@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CalculationWidget extends StatelessWidget {
-  const CalculationWidget({super.key});
+  const CalculationWidget(
+      {super.key, required this.height, required this.weight});
+  final double weight;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -9,42 +12,43 @@ class CalculationWidget extends StatelessWidget {
       child: Container(
         width: double.infinity,
         color: Colors.blue,
-        child: const Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Your Bmi is',
               style: TextStyle(
                 color: Colors.white,
               ),
             ),
+            // weight/height
             Text(
-              '19.6 kg/m',
-              style: TextStyle(
+              "${weight / (height * height)}",
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 30,
               ),
             ),
-            Text(
+            const Text(
               '(Normal)',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 15,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Text(
+            const Text(
               'text kbera awy awy awy awy 1',
               style: TextStyle(
                 color: Colors.white,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
