@@ -8,10 +8,13 @@ class InformationWidget extends StatefulWidget {
   const InformationWidget(
       {super.key,
       required this.onChangedHeight,
-      required this.onChangedWeight});
+      required this.onChangedWeight,
+      required this.onChangedage,
+      required this.onChangedGender});
   final Function(double weight) onChangedWeight;
   final Function(double height) onChangedHeight;
-
+  final Function(double age) onChangedage;
+  final Function(String gender) onChangedGender;
   @override
   State<InformationWidget> createState() => _InformationWidgetState();
 }
@@ -19,13 +22,21 @@ class InformationWidget extends StatefulWidget {
 class _InformationWidgetState extends State<InformationWidget> {
   double weight = 0;
   double height = 0;
+  double age = 0;
+  String gender = '';
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: Column(
         children: [
-          const GenderCategorie(),
+          GenderCategorie(
+            genderSelection: (value) {
+              gender = value;
+              setState(() {});
+              widget.onChangedGender(gender);
+            },
+          ),
           const SizedBox(
             height: 30,
           ),
@@ -55,7 +66,13 @@ class _InformationWidgetState extends State<InformationWidget> {
               const SizedBox(
                 width: 20,
               ),
-              AgeWidget(),
+              AgeWidget(
+                onChanged: (value) {
+                  age = value;
+                  setState(() {});
+                  widget.onChangedage(age);
+                },
+              ),
             ],
           )
         ],

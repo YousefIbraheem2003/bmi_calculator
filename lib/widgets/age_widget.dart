@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 
 class AgeWidget extends StatefulWidget {
-  const AgeWidget({
-    super.key,
-  });
-
+  const AgeWidget({super.key, required this.onChanged});
+  final Function(double age) onChanged;
   @override
   State<AgeWidget> createState() => _AgeWidgetState();
 }
 
 class _AgeWidgetState extends State<AgeWidget> {
-  int number = 0;
+  double number = 0;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -48,6 +46,7 @@ class _AgeWidgetState extends State<AgeWidget> {
                   onTap: () {
                     number.toString;
                     setState(() {});
+                    widget.onChanged(number);
                   },
                 ),
                 const SizedBox(
@@ -69,6 +68,7 @@ class _AgeWidgetState extends State<AgeWidget> {
                   onTap: () {
                     number++;
                     setState(() {});
+                    widget.onChanged(number);
                   },
                 ),
               ],

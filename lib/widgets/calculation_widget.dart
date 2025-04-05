@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CalculationWidget extends StatelessWidget {
   const CalculationWidget(
       {super.key, required this.result, required this.text});
-  final double result;
+  final String result;
   final String text;
   @override
   Widget build(BuildContext context) {
