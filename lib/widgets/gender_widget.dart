@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 
 class GenderWidget extends StatefulWidget {
-  const GenderWidget({
-    super.key,
-    required this.gender,
-    required this.photo,
-  });
+  const GenderWidget(
+      {super.key,
+      required this.gender,
+      required this.photo,
+      required this.color});
   final String gender;
   final String photo;
-
+  final Color color;
   @override
   State<GenderWidget> createState() => _GenderWidgetState();
 }
 
 class _GenderWidgetState extends State<GenderWidget> {
   String gender = '';
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,7 +23,7 @@ class _GenderWidgetState extends State<GenderWidget> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         border: Border.all(
-          color: Colors.black,
+          color: widget.color,
           width: 1,
         ),
       ),

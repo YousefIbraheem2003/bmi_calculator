@@ -6,6 +6,7 @@ import 'package:bmi_calculator/widgets/profile_widget.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
+//navigation bar icons
 List<Widget> icons = [
   const Icon(
     Icons.monitor_heart,
@@ -44,23 +45,25 @@ class HomeViewWidget extends StatefulWidget {
 }
 
 class _HomeViewWidgetState extends State<HomeViewWidget> {
+  //index of the pages
   int index = 0;
-  double weight = 0;
+  int weight = 0;
   double height = 0;
   String result = '';
+  // text that describe your obbesity
   String text = '';
   String gender = '';
 
-  double age = 0;
-  // String chossedGender(List<String>gender){
-
-  // }
+  int age = 0;
+  // check if the weight and height is equal to zero if yes it doesnot change the page
   int indexOfThePage({
     required int index,
-    required double weight,
+    required int weight,
     required double height,
   }) {
     if (weight == 0 && height == 0) {
+      index = 0;
+    } else if (weight != 0 && height == 0) {
       index = 0;
     }
 
@@ -69,7 +72,7 @@ class _HomeViewWidgetState extends State<HomeViewWidget> {
 
   // calculate your bmi
   String bmiCalculation({
-    required double weight,
+    required int weight,
     required double height,
   }) {
     double resultDecimal = weight / pow((height / 100), 2);
@@ -79,11 +82,9 @@ class _HomeViewWidgetState extends State<HomeViewWidget> {
     return result;
   }
 
-// ckeks the obesity
+// ckeks the typr of obesity
   String bmiText(
-      {required String result,
-      required double weight,
-      required double height}) {
+      {required String result, required int weight, required double height}) {
     double resultOneDigit = double.parse(result);
     String text = '';
     if (weight == 0 && height == 0) {
@@ -104,18 +105,6 @@ class _HomeViewWidgetState extends State<HomeViewWidget> {
       text = 'Obesity Class III';
     }
     return text;
-  }
-
-  Widget icon(
-      {required int index,
-      required List<Widget> iconsWidget,
-      required double weight,
-      required double height}) {
-    if (weight == 0 && height == 0) {
-      return iconsWidget[0];
-    } else {
-      return iconsWidget[index];
-    }
   }
 
   @override

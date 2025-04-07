@@ -29,6 +29,7 @@ class CalculationWidget extends StatelessWidget {
               ),
             ),
             Text(
+              // describe your bmi
               text,
               style: const TextStyle(
                 color: Colors.white,

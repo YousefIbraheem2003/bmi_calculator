@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:bmi_calculator/functions/functions.dart';
 import 'package:flutter/material.dart';
 
 class WeightWidget extends StatefulWidget {
@@ -5,17 +8,29 @@ class WeightWidget extends StatefulWidget {
     super.key,
     required this.onChanged,
   });
-  final Function(double weight) onChanged;
+  final Function(int weight) onChanged;
   @override
   State<WeightWidget> createState() => _WeightWidgetState();
 }
 
 class _WeightWidgetState extends State<WeightWidget> {
-  double weight = 0;
-  void increment() {
-    weight++;
+  int weight = 0;
+  Timer? timer;
+  void increment({int step = 1}) {
+    weight += step;
     setState(() {});
     widget.onChanged(weight);
+  }
+
+  void startIncreasing() {
+    increment();
+    timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
+      increment(step: 1);
+    });
+  }
+
+  void stopIncreasing() {
+    timer?.cancel();
   }
 
   void decrement() {
@@ -51,12 +66,14 @@ class _WeightWidgetState extends State<WeightWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                  child: const Text(
+                  child: Text(
                     '-',
-                    style: TextStyle(fontSize: 50, color: Colors.grey),
+                    style: TextStyle(fontSize: 50, color: buttonColor(weight)),
                   ),
                   onTap: () {
-                    decrement();
+                    if (weight > 0) {
+                      decrement();
+                    }
                   },
                 ),
                 const SizedBox(
@@ -77,6 +94,14 @@ class _WeightWidgetState extends State<WeightWidget> {
                   ),
                   onTap: () {
                     increment();
+                  },
+                  onLongPressStart: (_) {
+                    startIncreasing();
+                    setState(() {});
+                  },
+                  onLongPressEnd: (_) {
+                    stopIncreasing();
+                    setState(() {});
                   },
                 ),
               ],

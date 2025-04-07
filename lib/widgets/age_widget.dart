@@ -1,14 +1,16 @@
+import 'package:bmi_calculator/functions/functions.dart';
 import 'package:flutter/material.dart';
 
 class AgeWidget extends StatefulWidget {
   const AgeWidget({super.key, required this.onChanged});
-  final Function(double age) onChanged;
+  final Function(int age) onChanged;
   @override
   State<AgeWidget> createState() => _AgeWidgetState();
 }
 
 class _AgeWidgetState extends State<AgeWidget> {
-  double number = 0;
+  int number = 0;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -39,12 +41,17 @@ class _AgeWidgetState extends State<AgeWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                  child: const Text(
+                  child: Text(
                     '-',
-                    style: TextStyle(fontSize: 50, color: Colors.grey),
+                    style: TextStyle(
+                      fontSize: 50,
+                      color: buttonColor(number),
+                    ),
                   ),
                   onTap: () {
-                    number.toString;
+                    if (number > 0) {
+                      number--;
+                    }
                     setState(() {});
                     widget.onChanged(number);
                   },

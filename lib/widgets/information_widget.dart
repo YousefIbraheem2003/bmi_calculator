@@ -11,18 +11,18 @@ class InformationWidget extends StatefulWidget {
       required this.onChangedWeight,
       required this.onChangedage,
       required this.onChangedGender});
-  final Function(double weight) onChangedWeight;
+  final Function(int weight) onChangedWeight;
   final Function(double height) onChangedHeight;
-  final Function(double age) onChangedage;
+  final Function(int age) onChangedage;
   final Function(String gender) onChangedGender;
   @override
   State<InformationWidget> createState() => _InformationWidgetState();
 }
 
 class _InformationWidgetState extends State<InformationWidget> {
-  double weight = 0;
+  int weight = 0;
   double height = 0;
-  double age = 0;
+  int age = 0;
   String gender = '';
   @override
   Widget build(BuildContext context) {

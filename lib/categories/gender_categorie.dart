@@ -10,6 +10,9 @@ class GenderCategorie extends StatefulWidget {
 }
 
 class _GenderCategorieState extends State<GenderCategorie> {
+  Color maleColor = Colors.black;
+  Color femaleColor = Colors.black;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -17,11 +20,16 @@ class _GenderCategorieState extends State<GenderCategorie> {
         Expanded(
           child: GestureDetector(
             onTap: () {
+              maleColor = Colors.red;
+              femaleColor = Colors.black;
               widget.genderSelection('male');
               setState(() {});
             },
-            child: const GenderWidget(
-                gender: 'male', photo: 'assets/malelogo.jpg'),
+            child: GenderWidget(
+              color: maleColor,
+              gender: 'male',
+              photo: 'assets/malelogo.jpg',
+            ),
           ),
         ),
         const SizedBox(
@@ -30,10 +38,13 @@ class _GenderCategorieState extends State<GenderCategorie> {
         Expanded(
           child: GestureDetector(
             onTap: () {
+              femaleColor = Colors.red;
+              maleColor = Colors.black;
               widget.genderSelection('female');
               setState(() {});
             },
-            child: const GenderWidget(
+            child: GenderWidget(
+              color: femaleColor,
               gender: 'female',
               photo: 'assets/female.jpg',
             ),
