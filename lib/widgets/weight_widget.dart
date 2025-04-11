@@ -16,25 +16,35 @@ class WeightWidget extends StatefulWidget {
 class _WeightWidgetState extends State<WeightWidget> {
   int weight = 0;
   Timer? timer;
+  // increase the count onlongpressed
   void increment({int step = 1}) {
     weight += step;
     setState(() {});
     widget.onChanged(weight);
   }
 
+//stops the counter if the user remove his finger from the plus button
   void startIncreasing() {
-    increment();
-    timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
+    timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
       increment(step: 1);
     });
+  }
+
+  startDecreasing() {
+    timer = Timer.periodic(
+      const Duration(milliseconds: 100),
+      (timer) {
+        decrement(step: 1);
+      },
+    );
   }
 
   void stopIncreasing() {
     timer?.cancel();
   }
 
-  void decrement() {
-    weight--;
+  void decrement({int step = 1}) {
+    weight -= step;
     setState(() {});
     widget.onChanged(weight);
   }
@@ -74,6 +84,16 @@ class _WeightWidgetState extends State<WeightWidget> {
                     if (weight > 0) {
                       decrement();
                     }
+                  },
+                  onLongPressStart: (_) {
+                    if (weight > 0) {
+                      startDecreasing();
+                      setState(() {});
+                    }
+                  },
+                  onLongPressEnd: (_) {
+                    stopIncreasing();
+                    setState(() {});
                   },
                 ),
                 const SizedBox(

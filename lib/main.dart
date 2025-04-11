@@ -1,3 +1,5 @@
+import 'package:bmi_calculator/themes/get_dark_theme.dart';
+import 'package:bmi_calculator/themes/get_light_theme.dart';
 import 'package:bmi_calculator/widgets/home_view_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,9 +19,12 @@ class BmiCalculator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: getLightTheme(),
+      darkTheme: getDarkTheme(),
+      themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
-      home: HomeViewWidget(),
+      home: const HomeViewWidget(),
     );
   }
 }

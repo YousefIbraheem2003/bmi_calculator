@@ -60,10 +60,9 @@ class _HomeViewWidgetState extends State<HomeViewWidget> {
     required int index,
     required int weight,
     required double height,
+    required String gender,
   }) {
-    if (weight == 0 && height == 0) {
-      index = 0;
-    } else if (weight != 0 && height == 0) {
+    if (weight == 0 || height == 0 || age == 0 || gender == '') {
       index = 0;
     }
 
@@ -114,8 +113,16 @@ class _HomeViewWidgetState extends State<HomeViewWidget> {
         buttonBackgroundColor: Colors.blue,
         backgroundColor: Colors.blue,
         color: Colors.blue,
-        index: indexOfThePage(index: index, weight: weight, height: height),
+        index: indexOfThePage(
+            index: index, weight: weight, height: height, gender: gender),
         onTap: (selectedIndex) {
+          if ((weight == 0 || height == 0 || age == 0 || gender == '') &&
+              selectedIndex > 0) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                  content: Text('please enter you information first')),
+            );
+          }
           index = selectedIndex;
           setState(
             () {},
@@ -133,6 +140,7 @@ class _HomeViewWidgetState extends State<HomeViewWidget> {
       backgroundColor: Colors.white,
       body: IndexedStack(
         index: indexOfThePage(
+          gender: gender,
           index: index,
           weight: weight,
           height: height,
