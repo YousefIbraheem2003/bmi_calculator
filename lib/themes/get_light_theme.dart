@@ -1,19 +1,14 @@
-import 'package:bmi_calculator/functions/customtheme/container_extension.dart';
 import 'package:flutter/material.dart';
 
 ThemeData getLightTheme() {
   return ThemeData(
-    scaffoldBackgroundColor: Colors.black,
-    extensions: [
-      ContainerBorderTheme(
-        border: Border.all(
-          color: Colors.grey,
-          width: 2,
-        ),
+      scaffoldBackgroundColor: Colors.white,
+      textTheme: ThemeData.dark().textTheme.apply(
+            bodyColor: Colors.black,
+          ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.white,
+        titleTextStyle: TextStyle(color: Colors.black, fontSize: 30),
       ),
-    ],
-    textTheme: ThemeData.dark().textTheme.apply(
-          bodyColor: Colors.black,
-        ),
-  );
+      iconTheme: const IconThemeData(color: Colors.black));
 }

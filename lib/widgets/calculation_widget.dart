@@ -8,32 +8,24 @@ class CalculationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
-        color: Colors.blue,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
               'Your Bmi is',
-              style: TextStyle(
-                color: Colors.white,
-              ),
             ),
             // weight/height
             Text(
               result.toString(),
               style: const TextStyle(
-                color: Colors.white,
                 fontSize: 30,
               ),
             ),
             Text(
               // describe your bmi
               text,
-              style: const TextStyle(
-                color: Colors.white,
-              ),
             ),
             const SizedBox(
               height: 15,
@@ -43,14 +35,12 @@ class CalculationWidget extends StatelessWidget {
               children: [
                 Icon(
                   Icons.save,
-                  color: Colors.white,
                 ),
                 SizedBox(
                   width: 20,
                 ),
                 Icon(
                   Icons.share,
-                  color: Colors.white,
                 ),
               ],
             )

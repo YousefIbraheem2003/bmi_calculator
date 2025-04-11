@@ -14,17 +14,28 @@ void main() async {
   runApp(const BmiCalculator());
 }
 
-class BmiCalculator extends StatelessWidget {
+class BmiCalculator extends StatefulWidget {
   const BmiCalculator({super.key});
 
+  @override
+  State<BmiCalculator> createState() => _BmiCalculatorState();
+}
+
+class _BmiCalculatorState extends State<BmiCalculator> {
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: getLightTheme(),
       darkTheme: getDarkTheme(),
-      themeMode: ThemeMode.light,
+      themeMode: isChecked ? ThemeMode.dark : ThemeMode.light,
       debugShowCheckedModeBanner: false,
-      home: const HomeViewWidget(),
+      home: HomeViewWidget(
+        buttonIsChecked: (value) {
+          isChecked = value;
+          setState(() {});
+        },
+      ),
     );
   }
 }

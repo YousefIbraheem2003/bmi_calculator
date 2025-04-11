@@ -2,8 +2,12 @@ import 'package:flutter_ruler_picker/flutter_ruler_picker.dart';
 import 'package:flutter/material.dart';
 
 class RulerWidget extends StatefulWidget {
-  const RulerWidget({super.key, required this.onChanged});
+  const RulerWidget(
+      {super.key,
+      required this.onChanged,
+      required this.rullerBackGroundColor});
   final Function(num height) onChanged;
+  final Color rullerBackGroundColor;
   @override
   State<RulerWidget> createState() => _MyHomePageState();
 }
@@ -30,12 +34,12 @@ class _MyHomePageState extends State<RulerWidget> {
           Text(
             currentValue.toStringAsFixed(1),
             style: const TextStyle(
-              color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
           ),
           RulerPicker(
+            rulerBackgroundColor: widget.rullerBackGroundColor,
             controller: _rulerPickerController!,
             onBuildRulerScaleText: (index, value) {
               return value.toInt().toString();

@@ -33,12 +33,16 @@ class _GenderWidgetState extends State<GenderWidget> {
             height: 110,
             width: 110,
             child: Image(
-              image: AssetImage(widget.photo),
+              image: AssetImage(
+                widget.photo,
+              ),
             ),
           ),
           Text(
             widget.gender,
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),

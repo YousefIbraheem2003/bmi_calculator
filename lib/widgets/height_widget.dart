@@ -2,9 +2,12 @@ import 'package:bmi_calculator/categories/ruler_widget.dart';
 import 'package:flutter/material.dart';
 
 class HeightWidget extends StatefulWidget {
-  const HeightWidget({super.key, required this.onChanged});
+  const HeightWidget(
+      {super.key,
+      required this.onChanged,
+      required this.rullerBackGroundColor});
   final Function(double height) onChanged;
-
+  final Color rullerBackGroundColor;
   @override
   State<HeightWidget> createState() => _HeightWidgetState();
 }
@@ -32,7 +35,9 @@ class _HeightWidgetState extends State<HeightWidget> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            Expanded(child: RulerWidget(
+            Expanded(
+                child: RulerWidget(
+              rullerBackGroundColor: widget.rullerBackGroundColor,
               onChanged: (value) {
                 height = value;
                 setState(() {});

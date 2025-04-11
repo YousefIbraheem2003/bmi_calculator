@@ -38,8 +38,8 @@ List<Widget> icons = [
 ];
 
 class HomeViewWidget extends StatefulWidget {
-  const HomeViewWidget({super.key});
-
+  const HomeViewWidget({super.key, required this.buttonIsChecked});
+  final Function(bool isChecked) buttonIsChecked;
   @override
   State<HomeViewWidget> createState() => _HomeViewWidgetState();
 }
@@ -49,12 +49,14 @@ class _HomeViewWidgetState extends State<HomeViewWidget> {
   int index = 0;
   int weight = 0;
   double height = 0;
+  int age = 0;
   String result = '';
   // text that describe your obbesity
   String text = '';
   String gender = '';
+  bool isChecked = false;
+  Color rullerBackGroundcolor = Colors.white;
 
-  int age = 0;
   // check if the weight and height is equal to zero if yes it doesnot change the page
   int indexOfThePage({
     required int index,
@@ -81,7 +83,7 @@ class _HomeViewWidgetState extends State<HomeViewWidget> {
     return result;
   }
 
-// ckeks the typr of obesity
+// ckeks the type of obesity
   String bmiText(
       {required String result, required int weight, required double height}) {
     double resultOneDigit = double.parse(result);
@@ -104,6 +106,18 @@ class _HomeViewWidgetState extends State<HomeViewWidget> {
       text = 'Obesity Class III';
     }
     return text;
+  }
+
+// change the color of the rullerBackGround
+  Color rullerBackGroundColor({required Color color, required bool isChecked}) {
+    if (isChecked == false) {
+      color;
+    } else {
+      color = Colors.black;
+    }
+
+    setState(() {});
+    return color;
   }
 
   @override
@@ -131,13 +145,27 @@ class _HomeViewWidgetState extends State<HomeViewWidget> {
         items: icons,
       ),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        actions: [
+          IconButton(
+            onPressed: () {
+              if (isChecked == false) {
+                isChecked = true;
+              } else if (isChecked == true) {
+                isChecked = false;
+              }
+              widget.buttonIsChecked(isChecked);
+              setState(() {});
+            },
+            icon: const Icon(
+              Icons.brightness_6,
+            ),
+          )
+        ],
         title: const Text(
           'BMI Calculator',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-      backgroundColor: Colors.white,
       body: IndexedStack(
         index: indexOfThePage(
           gender: gender,
@@ -147,6 +175,8 @@ class _HomeViewWidgetState extends State<HomeViewWidget> {
         ),
         children: [
           InformationWidget(
+            rullerBackGroundColor: rullerBackGroundColor(
+                color: rullerBackGroundcolor, isChecked: isChecked),
             onChangedGender: (value) {
               gender = value;
               setState(() {});

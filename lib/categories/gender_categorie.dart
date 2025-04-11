@@ -10,8 +10,8 @@ class GenderCategorie extends StatefulWidget {
 }
 
 class _GenderCategorieState extends State<GenderCategorie> {
-  Color maleColor = Colors.black;
-  Color femaleColor = Colors.black;
+  Color maleColor = Colors.grey;
+  Color femaleColor = Colors.grey;
 
   @override
   Widget build(BuildContext context) {
