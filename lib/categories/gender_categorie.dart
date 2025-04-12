@@ -21,7 +21,7 @@ class _GenderCategorieState extends State<GenderCategorie> {
           child: GestureDetector(
             onTap: () {
               maleColor = Colors.red;
-              femaleColor = Colors.black;
+              femaleColor = Colors.grey;
               widget.genderSelection('male');
               setState(() {});
             },
@@ -39,7 +39,7 @@ class _GenderCategorieState extends State<GenderCategorie> {
           child: GestureDetector(
             onTap: () {
               femaleColor = Colors.red;
-              maleColor = Colors.black;
+              maleColor = Colors.grey;
               widget.genderSelection('female');
               setState(() {});
             },

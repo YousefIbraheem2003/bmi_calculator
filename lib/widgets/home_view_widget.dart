@@ -92,15 +92,15 @@ class _HomeViewWidgetState extends State<HomeViewWidget> {
       text = 'enter your weight and  height';
     } else if (resultOneDigit == 0.0) {
       text = 'your weight or height is invalid ';
-    } else if (resultOneDigit > 0 && resultOneDigit < 18.5) {
+    } else if (resultOneDigit > 0 && resultOneDigit <= 18.5) {
       text = 'Underweight';
-    } else if (resultOneDigit > 18.5 && resultOneDigit < 24.9) {
+    } else if (resultOneDigit > 18.5 && resultOneDigit <= 24.9) {
       text = 'Normal weight';
-    } else if (resultOneDigit > 25 && resultOneDigit < 29.9) {
+    } else if (resultOneDigit > 24.9 && resultOneDigit <= 29.9) {
       text = 'Overweight';
-    } else if (resultOneDigit > 30 && resultOneDigit < 34.9) {
+    } else if (resultOneDigit > 29.9 && resultOneDigit <= 34.9) {
       text = 'Obesity Class I';
-    } else if (resultOneDigit > 35 && resultOneDigit < 39.9) {
+    } else if (resultOneDigit > 34.9 && resultOneDigit <= 39.9) {
       text = 'Obesity Class II';
     } else {
       text = 'Obesity Class III';
